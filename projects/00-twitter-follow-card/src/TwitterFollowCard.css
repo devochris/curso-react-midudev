@@ -1,0 +1,71 @@
+.tw-follow-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: .8rem;
+
+    header {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        span {
+            opacity: .6;
+        }
+    }
+
+    img {
+        width: 48px;
+        height: 48px;
+        border-radius: 1000px;
+    }
+
+    button {
+        margin-left: 16px;
+        border: 1px solid black;
+        border-radius: 999px;
+        padding: 6px 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        &:hover {
+            opacity: .8;
+        }
+
+        &.is-following {
+            background-color: transparent;
+            color: white;
+            border-color: #bbb;
+            width: 130px;
+
+            &:hover {
+                border-color: red;
+                background-color: rgba(255, 0, 0, 0.178);
+                color: red;
+
+                .text {
+                    display: none;
+                }
+
+                .stop-following-text {
+                    display: block;
+                }
+            }
+        }
+
+        .text {
+            display: block;
+        }
+
+        .stop-following-text {
+            display: none;
+        }
+    }
+}
