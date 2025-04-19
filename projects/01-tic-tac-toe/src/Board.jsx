@@ -8,6 +8,7 @@ import { checkEndGame, GAME_STATUS } from "./consts/game-status.js";
 import { checkWinner } from "./utils/checkWinner.js";
 import { Winner } from "./Winner.jsx";
 import { ResetGame } from "./ResetGame.jsx";
+import confetti from 'canvas-confetti';
 
 export function Board() {
     const positions = useArray(9)
@@ -35,6 +36,7 @@ export function Board() {
         const newWinner = checkWinner(newSquares)
 
         if (newWinner) {
+            confetti()
             setWinner(newWinner)
         } else if (checkEndGame(newSquares)) {
             setWinner(GAME_STATUS.TIE)
