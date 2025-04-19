@@ -3,6 +3,8 @@ import { BoardSquare } from "./BoardSquare.jsx";
 import { ResetGame } from "./ResetGame.jsx";
 
 export function Winner({ winner, resetGame }) {
+    if (winner === null) return null
+
     const winnerText = winner === GAME_STATUS.TIE
         ? 'Empate'
         : `Ha ganado ${winner}`

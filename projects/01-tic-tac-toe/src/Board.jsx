@@ -55,8 +55,7 @@ export function Board() {
             </Game>
 
             <TurnInfo turn={turn} />
-
-            {winner !== null && <Winner winner={winner} resetGame={resetGame} />}
+            <Winner winner={winner} resetGame={resetGame} />
         </main>
     )
 }
