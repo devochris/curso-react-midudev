@@ -1,6 +1,5 @@
 import { BoardSquares } from "./BoardSquares.jsx";
 import { useState } from "react";
-import { useArray } from "./hooks/useArray.js";
 import { TURNS } from "./consts/turns.js";
 import { TurnInfo } from "./TurnInfo.jsx";
 import { Game } from "./Game.jsx";
@@ -9,17 +8,31 @@ import { checkWinner } from "./utils/checkWinner.js";
 import { Winner } from "./Winner.jsx";
 import { ResetGame } from "./ResetGame.jsx";
 import confetti from 'canvas-confetti';
+import { SQUARES_POSITIONS } from "./consts/board.js";
+import { getSavedSquares, getSavedTurn, resetGameStorage, saveGameStorage } from "./utils/storage.js";
 
 export function Board() {
-    const positions = useArray(9)
-    const [squares, setSquares] = useState(positions)
-    const [turn, setTurn] = useState(TURNS.X)
+    const [squares, setSquares] = useState(() => {
+        const savedSquares = getSavedSquares()
+
+        return savedSquares
+            ? JSON.parse(savedSquares)
+            : SQUARES_POSITIONS
+    })
+
+    const [turn, setTurn] = useState(() => {
+        const savedTurn = getSavedTurn()
+        return savedTurn ?? TURNS.X
+    })
+
     const [winner, setWinner] = useState(GAME_STATUS.NO_WINNER)
 
     const resetGame = () => {
-        setSquares(positions)
+        setSquares(SQUARES_POSITIONS)
         setTurn(TURNS.X)
         setWinner(GAME_STATUS.NO_WINNER)
+
+        resetGameStorage()
     }
 
     const updateBoard = (squarePosition) => {
@@ -32,6 +45,11 @@ export function Board() {
 
         const newTurn = (turn === TURNS.X ? TURNS.O : TURNS.X)
         setTurn(newTurn)
+
+        saveGameStorage({
+            squares: newSquares,
+            turn: newTurn,
+        })
 
         const newWinner = checkWinner(newSquares)
 
