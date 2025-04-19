@@ -1,11 +1,11 @@
-export function ResetGame({ children, onReset }) {
-    const handleClick = () => {
-        onReset()
-    }
+export function ResetGame ({ children, onReset }) {
+  const handleClick = () => {
+    onReset()
+  }
 
-    return (
-        <button onClick={handleClick}>
-            {children}
-        </button>
-    )
+  return (
+    <button onClick={handleClick}>
+      {children}
+    </button>
+  )
 }

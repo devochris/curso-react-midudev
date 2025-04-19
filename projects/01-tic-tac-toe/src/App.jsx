@@ -1,6 +1,6 @@
-import { Board } from "./Board.jsx";
+import { Board } from './Board.jsx'
 
-function App() {
+function App () {
   return (
     <Board />
   )
