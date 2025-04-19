@@ -9,9 +9,7 @@ export const checkWinner = (squares) => {
             squares[a] &&
             squares[a] === squares[b] &&
             squares[a] === squares[c]
-        ) {
-            return squares[a]
-        }
+        ) return squares[a]
     }
 
     return GAME_STATUS.NO_WINNER
